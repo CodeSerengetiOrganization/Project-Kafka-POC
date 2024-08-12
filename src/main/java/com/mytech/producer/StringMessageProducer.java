@@ -1,23 +1,56 @@
-package producer;
+package com.mytech.producer;
 
 import org.apache.kafka.clients.producer.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
+import org.springframework.stereotype.Component;
 
 import java.util.Properties;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
-public class MessageProducer {
-    public static void main(String[] args) {
-        MessageProducer producer=new MessageProducer();
+@Component
+public class StringMessageProducer {
+
+    @Autowired
+    KafkaTemplate<String, String> producerTemplateString;
+/*    public static void main(String[] args) {
+        StringMessageProducer producer=new StringMessageProducer();
         producer.sendMessage();
-    }
+    }*/
 
     public void sendMessage() {
+
+        String topicName="test-topic";
+        String key="case-management";
+        String data="data sent from java producer via KafkaTemplate";
+        CompletableFuture<SendResult<String, String>> sendResultFuture = producerTemplateString.send(topicName, key, data);
+
+        try{
+
+            SendResult<String, String> sendResult = sendResultFuture.get();
+            System.out.println(sendResult.toString());
+        } catch ( ExecutionException executionException){
+//            System.out.println();
+            executionException.printStackTrace();
+        }catch ( InterruptedException interruptedException){
+            interruptedException.printStackTrace();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    /*
         // Set up properties
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"); // Your Kafka server address
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
 
-        // Create Kafka producer
+
+
+       // Create Kafka producer
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
 
         try {
@@ -38,6 +71,6 @@ public class MessageProducer {
         } finally {
             // Close the producer
             producer.close();
-        }
+        }*/
     }
 }
