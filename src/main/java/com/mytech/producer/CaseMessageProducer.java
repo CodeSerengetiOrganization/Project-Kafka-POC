@@ -1,8 +1,12 @@
 package com.mytech.producer;
 
-import com.mytech.entity.CaseNew;
-import com.mytech.entity.CaseStatus;
-import com.mytech.entity.CaseType;
+
+
+
+import com.mytech.model.CaseNew.CaseType;
+import com.mytech.model.CaseNew.CaseStatus;
+import com.mytech.model.CaseNew;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -29,8 +33,8 @@ public class CaseMessageProducer {
 //        String data="data sent from java producer via KafkaTemplate";
         CaseNew caseNew=new CaseNew();
         caseNew.setCaseId(99);
-        caseNew.setCaseStatus(CaseStatus.PendingDocument);
-        caseNew.setCaseType(CaseType.NetNew);
+        caseNew.setCaseStatus(CaseStatus.PENDING_DOCUMENT);
+        caseNew.setCaseType(CaseType.NET_NEW);
         caseNew.setCreatedBy("Perry Stark");
         caseNew.setCreateDate(LocalDateTime.now() );
         caseNew.setModifiedDate(LocalDateTime.now());
