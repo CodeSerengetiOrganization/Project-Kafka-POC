@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CaseNew",
+  "type": "object",
+  "properties": {
+    "caseId": {
+      "type": "integer"
+    },
+    "caseStatus": {
+      "type": "string",
+      "enum": ["PendingDocument", "PendingReview"]
+    },
+    "caseType": {
+      "type": "string",
+      "enum": ["Fraud", "NetNew", "LOD"]
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "createDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modifiedDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "pendingReviewDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "note": {
+      "type": "string"
+    }
+  },
+  "required": ["caseId", "caseStatus", "caseType", "createdBy", "createDate"]
+}

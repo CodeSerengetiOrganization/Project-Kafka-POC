@@ -106,8 +106,50 @@
                 <configuration>
                     <source>17</source>
                     <target>17</target>
+                    <generatedSourcesDirectory>${project.build.directory}/generated-sources/jsonschema2pojo</generatedSourcesDirectory>
                 </configuration>
             </plugin>
+
+            <!-- jsonschema2pojo related plugins-->
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <version>1.1.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sourceDirectory>${basedir}/src/main/resources/schemajson</sourceDirectory>
+                    <targetPackage>com.mytech.model</targetPackage>
+                    <sourceEncoding>UTF-8</sourceEncoding>
+                    <annotationStyle>jackson2</annotationStyle>
+                    <dateTimeType>java.time.LocalDateTime</dateTimeType> <!-- Use LocalDateTime -->
+                    <includeAdditionalProperties>false</includeAdditionalProperties>
+                </configuration>
+            </plugin>
+            <!--
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <version>1.1.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sourceType>JSON_SCHEMA</sourceType>
+                    <sourceDirectory>${basedir}/src/main/resources/schemajson</sourceDirectory>
+                    <targetPackage>com.mytech.model</targetPackage>
+                </configuration>
+            </plugin>
+            -->
         </plugins>
     </build>
 
