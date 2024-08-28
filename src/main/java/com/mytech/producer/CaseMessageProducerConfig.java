@@ -21,7 +21,7 @@ import java.util.Map;
 public class CaseMessageProducerConfig {
 
     @Bean
-    public KafkaTemplate<String, CaseNew> producerTemplateCase(){
+    public KafkaTemplate<String, CaseNew> producerTemplateCaseNew(){
         return new KafkaTemplate<>(producerFactoryCase());
     }
 

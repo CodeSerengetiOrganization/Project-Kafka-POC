@@ -1,6 +1,5 @@
 import com.mytech.producer.CaseMessageProducer;
 import com.mytech.producer.StringMessageProducerConfig;
-import com.mytech.producer.StringMessageProducer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +10,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ContextConfiguration(classes = StringMessageProducerConfig.class)
 public class CaseMessageProducerTests {
     @Autowired
-    CaseMessageProducer producer;
+    CaseMessageProducer sender;
 
     @Test
     public void shouldSendMessageSuccessfully(){
-        producer.sendMessage();
+        sender.sendMessage();
         System.out.println("Junit works with Send Case Message");
 
     }
