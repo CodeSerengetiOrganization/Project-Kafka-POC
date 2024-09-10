@@ -35,6 +35,7 @@ public class CaseMessageProducerConfig {
 //        configs.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.J");
         configs.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         configs.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        // todo: producer should not have deserializer, remove it
         configs.put(JsonDeserializer.TRUSTED_PACKAGES, "com.mytech.entity");
 
         return new DefaultKafkaProducerFactory<>(configs);

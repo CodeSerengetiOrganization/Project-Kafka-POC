@@ -23,6 +23,7 @@ public class CaseMessageProducer {
         producer.sendMessage();
     }*/
 
+    // todo: need to add a new method :public void sendMessage(CaseNew caseNew)
     public void sendMessage() {
 
         String topicName="test-topic";
