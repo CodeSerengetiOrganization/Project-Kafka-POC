@@ -1,8 +1,9 @@
 package com.mytech.producer;
 
-import com.mytech.entity.CaseNew;
+
 import com.mytech.entity.CaseStatus;
 import com.mytech.entity.CaseType;
+import io.swagger.client.model.CaseNew;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -22,6 +23,7 @@ public class CaseMessageProducer {
         producer.sendMessage();
     }*/
 
+    // todo: need to add a new method :public void sendMessage(CaseNew caseNew)
     public void sendMessage() {
 
         String topicName="test-topic";
@@ -29,8 +31,8 @@ public class CaseMessageProducer {
 //        String data="data sent from java producer via KafkaTemplate";
         CaseNew caseNew=new CaseNew();
         caseNew.setCaseId(99);
-        caseNew.setCaseStatus(CaseStatus.PendingDocument);
-        caseNew.setCaseType(CaseType.NetNew);
+        caseNew.setCaseStatus(CaseNew.CaseStatusEnum.PENDINGDOCUMENT);
+        caseNew.setCaseType(CaseNew.CaseTypeEnum.LOD);
         caseNew.setCreatedBy("Perry Stark");
         caseNew.setCreateDate(LocalDateTime.now() );
         caseNew.setModifiedDate(LocalDateTime.now());

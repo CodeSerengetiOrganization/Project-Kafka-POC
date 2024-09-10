@@ -1,6 +1,6 @@
 package com.mytech.producer;
 
-import com.mytech.model.CaseNew;
+import io.swagger.client.model.CaseNew;
 import org.apache.kafka.common.errors.TimeoutException;
 import org.apache.kafka.common.errors.InterruptException;
 import org.springframework.beans.factory.annotation.Autowired;

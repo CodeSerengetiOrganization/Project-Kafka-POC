@@ -1,6 +1,7 @@
 package com.mytech.producer;
 
-import com.mytech.entity.CaseNew;
+
+import io.swagger.client.model.CaseNew;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
@@ -20,12 +21,12 @@ import java.util.Map;
 @ComponentScan(basePackages = "com.mytech")
 public class CaseMessageProducerConfig {
 
-    @Bean
+//    @Bean
     public KafkaTemplate<String, CaseNew> producerTemplateCaseNew(){
         return new KafkaTemplate<>(producerFactoryCase());
     }
 
-    @Bean
+//    @Bean
     public ProducerFactory<String, CaseNew> producerFactoryCase() {
 
         Map<String, Object> configs = new HashMap<>();
@@ -34,6 +35,7 @@ public class CaseMessageProducerConfig {
 //        configs.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.J");
         configs.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         configs.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        // todo: producer should not have deserializer, remove it
         configs.put(JsonDeserializer.TRUSTED_PACKAGES, "com.mytech.entity");
 
         return new DefaultKafkaProducerFactory<>(configs);
