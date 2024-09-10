@@ -1,13 +1,11 @@
 package com.mytech.producer;
 
-import com.mytech.model.CaseNew;
+
+import io.swagger.client.model.CaseNew;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
@@ -17,7 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-@ComponentScan(basePackages = "com.mytech.producer")
+@ComponentScan(basePackages = "com.mytech.producer",excludeFilters = @ComponentScan.Filter(
+        type = FilterType.ASSIGNABLE_TYPE,
+        classes = CaseMessageProducerConfig.class))
 @PropertySource("classpath:kafkaproducerconfig.properties")
 public class KafkaProducerConfig {
     @Value("${spring.kafka.bootstrap-servers}")
